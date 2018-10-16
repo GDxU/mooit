@@ -100,7 +100,7 @@ html, body {
     height: 120px;
     position: fixed;
     left: 5px;
-    bottom: 0;
+    top: 85px;
     z-index: 11;
 }
 
