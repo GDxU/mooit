@@ -38,7 +38,6 @@ window.onload = function () {
         var TestButton = document.getElementById ("Test");
 
 
-
         function StartGame () {
             var GlobalAnimate = []; //全局动画
             var GlobalAnimateResName = ""; //全局动画当前绘制的资源名称
@@ -133,7 +132,7 @@ window.onload = function () {
             var AnimateNoPass = 0;
             var ResPath = "./Res/"; //资源路径
             //资源名称列表
-            var ResNameList = ['Hero', 'Npc1', 'Npc2', 'Npc3', 'Enemy1', 'Enemy2', 'Enemy3', 'Enemy4', 'Enemy5', 'Enemy6', 'Enemy7', 'Enemy8', 'Enemy9', 'Enemy10', 'Enemy11', 'Enemy12', 'Enemy13', 'Enemy14', 'Enemy15', 'Store', 'Terrain', 'Stair', 'Door1', 'Door2', 'Door3', 'Door4', 'Gem', 'Weapon', 'Floor', 'Item1', 'Item2', 'Item3', 'Star', 'Lava', 'Water', 'Name', 'Battle1'];
+            var ResNameList = ["Hero", "Npc1", "Npc2", "Npc3", "Enemy1", "Enemy2", "Enemy3", "Enemy4", "Enemy5", "Enemy6", "Enemy7", "Enemy8", "Enemy9", "Enemy10", "Enemy11", "Enemy12", "Enemy13", "Enemy14", "Enemy15", "Store", "Terrain", "Stair", "Door1", "Door2", "Door3", "Door4", "Gem", "Weapon", "Floor", "Item1", "Item2", "Item3", "Star", "Lava", "Water", "Name", "Battle1"];
             var ResData = {}; //存储所有图片对象的数组
             var MapsData = MapSet;
             var IconsData = IconSet; //所有图标坐标数据
@@ -1526,7 +1525,7 @@ window.onload = function () {
                             "Date" : DateStr
                         };
                         var SaveDataJSON = JSON.stringify (SaveData);
-                        localStorage.setItem ("MotaData" + Choose, SaveDataJSON);
+                        localStorage.setItem ("JbData" + Choose, SaveDataJSON);
                         Map.DrawMessage ("存档完毕", "Tip");
                         if (TestNull (callback)) {
                             callback (true);
@@ -1551,8 +1550,8 @@ window.onload = function () {
                             callback ();
                             return;
                         }
-                        if (localStorage.getItem ("MotaData" + Choose)) {
-                            var SaveData = JSON.parse (localStorage.getItem ("MotaData" + Choose));
+                        if (localStorage.getItem ("JbData" + Choose)) {
+                            var SaveData = JSON.parse (localStorage.getItem ("JbData" + Choose));
                             if (Version != SaveData.Version) {
                                 if (!confirm ("此存档版本(" + SaveData.Version + ")与当前游戏版本(" + Version + ")不同，读取后可能引发未知的后果，是否读档？")) {
                                     return;
@@ -1644,10 +1643,10 @@ window.onload = function () {
                 }
 
                 e.RemoveAllSave = function () {
-                    localStorage.removeItem ("MotaData1");
-                    localStorage.removeItem ("MotaData2");
-                    localStorage.removeItem ("MotaData3");
-                    localStorage.removeItem ("MotaData4");
+                    localStorage.removeItem ("JbData1");
+                    localStorage.removeItem ("JbData2");
+                    localStorage.removeItem ("JbData3");
+                    localStorage.removeItem ("JbData4");
                     e.CloseSL ();
                     Map.DrawMessage ("已清空存档", "Tip");
                 }
@@ -2008,7 +2007,7 @@ window.onload = function () {
                                     Flag.Move = false;
                                     HeroStop ();
                                     Event.Enable ("Controller");
-                                    /*if((localStorage.getItem("MotaData1") && JSON.parse(localStorage.getItem("MotaData1")).Version != Version)||(localStorage.getItem("MotaData2")&&JSON.parse(localStorage.getItem("MotaData2")).Version != Version)||(localStorage.getItem("MotaData3")&&JSON.parse(localStorage.getItem("MotaData3")).Version != Version)||(localStorage.getItem("MotaData4")&&JSON.parse(localStorage.getItem("MotaData4")).Version != Version)){
+                                    /*if((localStorage.getItem("JbData1") && JSON.parse(localStorage.getItem("JbData1")).Version != Version)||(localStorage.getItem("JbData2")&&JSON.parse(localStorage.getItem("JbData2")).Version != Version)||(localStorage.getItem("JbData3")&&JSON.parse(localStorage.getItem("JbData3")).Version != Version)||(localStorage.getItem("JbData4")&&JSON.parse(localStorage.getItem("JbData4")).Version != Version)){
 			            Event.RemoveAllSave();
 			            alert("为了适应新版本("+ Version +")，您以前的存档将被清空╮（╯＿╰）╭");
 			          }*/
@@ -2187,7 +2186,7 @@ window.onload = function () {
                     var OpacityVal = 0;
                     m.ResetAlpha (m.UI);
                     m.ClearMap (m.UI);
-                    m.UI.fillStyle = "#000000";
+                    //  m.UI.fillStyle = "#000000";
                     var ShowGameOver = window.setInterval (function () {
                         OpacityVal += 0.1;
                         m.ClearMap (m.UI);
@@ -2201,27 +2200,29 @@ window.onload = function () {
                             clearInterval (ShowGameOver);
                             OpacityVal = 0;
                             m.Data.textAlign = "center";
-                            m.Data.font = "bold 40px Verdana";
+                            m.Data.font = "bold 45px bloodgo";
                             m.ResetAlpha (m.Data);
-                            m.Data.fillStyle = "#00FFFF";
+                            m.Data.fillStyle = "#f11e23";
                             var Top = 352;
-                            var ShowGameOverText = window.setInterval (function () {
+                            var ShowGameOverTextUt = window.setInterval (function () {
                                 Top--;
                                 OpacityVal += 0.005;
                                 m.SetAlpha (m.Data, OpacityVal);
                                 m.ClearMap (m.Data);
                                 m.Data.fillText ("GameOver", 176, Top);
                                 if (Top <= 185) {
-                                    clearInterval (ShowGameOverText);
-                                    m.ResetAlpha (m.Data);
-                                    if (TestNull (callback)) {
-                                        callback ();
-                                    }
+                                    clearInterval (ShowGameOverTextUt);
+                                    //  m.ResetAlpha (m.Data);
+                                    setTimeout (function () {
+                                        if (TestNull (callback)) {
+                                            callback ();
+                                        }
+                                    }, 4000);
                                 }
                             }, 10);
                         }
                     }, 50);
-                }
+                };
 
                 m.ClearFloor = function () {
                     //Flag.LockMove = true;
@@ -2241,10 +2242,10 @@ window.onload = function () {
                     m.ClearMap ();
                 }
 
-                m.DrawThumbnail = function (Canvas, MotaData, X, Y, Size, SetFloor, callback) {
-                    var BgData = MotaData.MapsData[((TestNull (SetFloor)) ? (SetFloor) : (MotaData.Floor))][0];
-                    var FgData = MotaData.MapsData[((TestNull (SetFloor)) ? (SetFloor) : (MotaData.Floor))][1];
-                    var EventData = MotaData.MapsData[((TestNull (SetFloor)) ? (SetFloor) : (MotaData.Floor))][2];
+                m.DrawThumbnail = function (Canvas, JbData, X, Y, Size, SetFloor, callback) {
+                    var BgData = JbData.MapsData[((TestNull (SetFloor)) ? (SetFloor) : (JbData.Floor))][0];
+                    var FgData = JbData.MapsData[((TestNull (SetFloor)) ? (SetFloor) : (JbData.Floor))][1];
+                    var EventData = JbData.MapsData[((TestNull (SetFloor)) ? (SetFloor) : (JbData.Floor))][2];
                     var AnimateEventData = EventData.Animate;
                     var ItemEventData = EventData.Item;
                     var DoorEventData = EventData.Door;
@@ -2318,8 +2319,8 @@ window.onload = function () {
                         IconData = m.Icons.GetData (Temp[0], parseInt (Temp[1]));
                         Canvas.drawImage (m.Res[IconData[5]], IconData[1], IconData[2], 32, 32, X + FloorEventData[v][1] * Size, Y + FloorEventData[v][2] * Size, Size, Size);
                     }
-                    if (TestNull (MotaData.HeroLocation)) {
-                        var HeroData = MotaData.HeroLocation;
+                    if (TestNull (JbData.HeroLocation)) {
+                        var HeroData = JbData.HeroLocation;
                         var NowHeadData = HeroIconData[HeroData[0]];
                         Canvas.drawImage (m.Res["Hero"], NowHeadData[0][1], NowHeadData[0][2], 32, 32, X + HeroData[1] * Size, Y + HeroData[2] * Size, Size, Size);
                     }
@@ -3053,7 +3054,7 @@ window.onload = function () {
                             m.UI.fill ();
                             break;
                         case 4:
-                            var HelpContent = ("经过两个多月的努力，纪元魔塔前传终于完结\n了，当然，有前传肯定有正式版，游戏是使用\nHTML5 Canvas + JavaScript 制作的，选择这两样\n东西制作是因为其跨平台能力强， 几乎所有的\n主流浏览器都能运行它，电脑和手机都能运行，\n不过这个版本的内核做的并不好，这在第三版\n本的纪元魔塔内核中将会得到极大的升级改进\n敬请期待纪元的新版本噢\n作者：Vinlic科技                    QQ：912121616\n网址：http://www.vinlic.com/\n").split ("\n");
+                            var HelpContent = ("经过两个多月的努力，纪元魔塔前传终于完结\n了，当然，有前传肯定有正式版，游戏是使用\nH5 制作的，选择这两样\n东西制作是因为其跨平台能力强， 几乎所有的\n主流浏览器都能运行它，电脑和手机都能运行，\n不过这个版本的内核做的并不好，这在第三版\n本的纪元魔塔内核中将会得到极大的升级改进\n敬请期待纪元的新版本噢\n作者：JcKam\n").split ("\n");
                             m.SetAlpha (m.UI, 0.9);
                             m.UI.fillStyle = "#FFFFFF";
                             m.UI.font = "bold 16px Verdana";
@@ -3338,8 +3339,8 @@ window.onload = function () {
                                 m.UI.fillStyle = "#FFFFFF";
                                 m.UI.textAlign = "center";
                                 for (var s = 1; s < 5; s++) {
-                                    if (localStorage.getItem ("MotaData" + s)) {
-                                        var DataTemp = JSON.parse (localStorage.getItem ("MotaData" + s));
+                                    if (localStorage.getItem ("JbData" + s)) {
+                                        var DataTemp = JSON.parse (localStorage.getItem ("JbData" + s));
                                         var SaveVersion = DataTemp.Version;
                                         var SaveDate = DataTemp.Date;
                                         SaveData.push (DataTemp);
@@ -4823,8 +4824,8 @@ window.onload = function () {
         }
 
         function InterfaceDetection () {
-            var touch_device = !!window.ontouchstart;
-            if (!touch_device) {
+            //   var touch_device = !!window.ontouchstart;
+            if (!is_touch_device ()) {
                 ToolsGroup.style.display = "none";
                 ControlGroup.style.display = "none";
             } else {
@@ -4832,6 +4833,23 @@ window.onload = function () {
                 ControlGroup.style.display = "block";
             }
         }
+
+        function is_touch_device () {
+            var prefixes = ' -webkit- -moz- -o- -ms- '.split (' ');
+            var mq = function (query) {
+                return window.matchMedia (query).matches;
+            }
+
+            if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                return true;
+            }
+
+            // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+            // https://git.io/vznFH
+            var query = ['(', prefixes.join ('touch-enabled),('), 'heartz', ')'].join ('');
+            return mq (query);
+        }
+
 
         InterfaceDetection ();
         StartGame ();
