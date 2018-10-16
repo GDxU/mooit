@@ -108,7 +108,7 @@ html, body {
     width: 30px;
     height: 30px;
     position: absolute;
-    margin-top: 44px;
+    margin-top: 3px;
     margin-left: 180px;
     opacity: 0.5;
 }
@@ -354,4 +354,42 @@ html, body {
 
 .osc_git_main a {
     color: #4183c4;
+}
+
+.btn-3d {
+    font-family: 'Share Tech Mono', monospace;
+    display: inline-block;
+    /* 自适应 */
+    /* 固定宽高 */
+    width: 12rem;
+    height: 5rem;
+    line-height: 2rem;
+    /* 固定宽高 */
+    color: #fff;
+    font-size: 0.5rem;
+    border-radius: .5rem;
+    margin: 5px;
+    /** no selection */
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.btn-3d:active, .btn-3d.disabled {
+    transform: translate3d(0, 9px, 0);
+    -webkit-transform: translate3d(0, 9px, 0);
+}
+
+.btn-3d.red {
+    background-color: #e74c3c;
+    box-shadow: 0 0 0 1px #c63702 inset,
+    0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+    0 8px 0 0 #C24032,
+    0 8px 0 1px rgba(0, 0, 0, 0.4),
+    0 8px 8px 1px rgba(0, 0, 0, 0.5);
+}
+.btn-3d.help{
+
 }
