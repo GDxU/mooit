@@ -4851,7 +4851,7 @@ window.onload = function () {
         }
 
 
-        //InterfaceDetection ();
+        InterfaceDetection ();
         StartGame ();
     }
     catch (e) {
