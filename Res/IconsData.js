@@ -1,11 +1,10 @@
-/*
+/**
   图标集合
   Terrain 地形图标 图标ID 在雪碧图内的x坐标 在雪碧图内的y坐标 宽度 高度 是否可通行
   Hero 勇士图标 图标ID 朝向 在雪碧图内的x坐标 在雪碧图内的y坐标 宽度 高度
   Item 物品图标 图标ID 在雪碧图内的x坐标 在雪碧图内的y坐标 宽度 高度 所属的雪碧图
   Enemy 怪物图标
   Npc Npc图标
-  
 */
 
 var IconSet = new Object();
@@ -231,7 +230,12 @@ IconSet.Water = [
   [2,64,0,32,32],
   [3,96,0,32,32]
 ];
-
+IconSet.CoinE = [
+    [0,0,0,32,40],
+    [1,0,44,32,40],
+    [2,0,88,32,40],
+    [3,0,132,32,40]
+]
 IconSet.GetData = function(Type,ID){
 	var Datas = eval("IconSet." + Type);
 	if(typeof(ID) != "undefined"){

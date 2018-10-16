@@ -132,7 +132,7 @@ window.onload = function () {
             var AnimateNoPass = 0;
             var ResPath = "./Res/"; //资源路径
             //资源名称列表
-            var ResNameList = ["Hero", "Npc1", "Npc2", "Npc3", "Enemy1", "Enemy2", "Enemy3", "Enemy4", "Enemy5", "Enemy6", "Enemy7", "Enemy8", "Enemy9", "Enemy10", "Enemy11", "Enemy12", "Enemy13", "Enemy14", "Enemy15", "Store", "Terrain", "Stair", "Door1", "Door2", "Door3", "Door4", "Gem", "Weapon", "Floor", "Item1", "Item2", "Item3", "Star", "Lava", "Water", "Name", "Battle1"];
+            var ResNameList = ["Hero", "Npc1", "Npc2", "Npc3", "Enemy1", "Enemy2", "Enemy3", "Enemy4", "Enemy5", "Enemy6", "Enemy7", "Enemy8", "Enemy9", "Enemy10", "Enemy11", "Enemy12", "Enemy13", "Enemy14", "Enemy15", "Store", "Terrain", "Stair", "Door1", "Door2", "Door3", "Door4", "Gem", "Weapon", "Floor", "Item1", "Item2", "Item3", "Star", "Lava", "Water", "Name", "Battle1", "CoinE"];
             var ResData = {}; //存储所有图片对象的数组
             var MapsData = MapSet;
             var IconsData = IconSet; //所有图标坐标数据
